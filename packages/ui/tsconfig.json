@@ -1,0 +1,5 @@
+{
+  "extends": "@repo/typescript-config/react-library.json",
+  "include": [".", "../../apps/web/src/app/_components/link-group"],
+  "exclude": ["dist", "build", "node_modules"]
+}
