@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { IsNull, Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { Roles } from './entities/user-roles.entity';
 import { ERROR_MESSAGES } from './enums';
@@ -29,7 +29,7 @@ export class RolesService {
   }
 
   async findRoot() {
-    return this.roles.find({ where: { parent: null } });
+    return this.roles.find({ where: { parentId: IsNull() } });
   }
 
   async findAll() {
