@@ -318,7 +318,7 @@ function Child<TData>({
                     ) : null}
                   </span>
                 ) : null}
-                <Box className='cursor-pointer w-full ui-bg-green-400'
+                <span className='cursor-pointer w-full'
                   onClick={() => {
                     setClicked((prev) => (prev === unique ? null : unique));
                     if (!config.multipleSelect && setSelectedIds) {
@@ -338,7 +338,7 @@ function Child<TData>({
                   role="presentation"
                 >
                   {record[label] as React.ReactNode}
-                </Box>
+                </span>
               </Box>
             );
           },

@@ -6,12 +6,12 @@ import { Section } from "@repo/ui/section"
 import { Box, Button, Divider, Flex, Modal, Skeleton, Text } from '@mantine/core';
 import AddNewRole from '../../_components/add-new/new';
 import Details from '../../_components/details';
-import { useLazyGetChildrenByParentIdQuery, useLazyGetRolesQuery } from '../../../lib/features/roles.api';
+import { useLazyGetChildrenByParentIdQuery, useLazyGetRolesQuery, useLazyGetRootsQuery } from '../../../lib/features/roles.api';
 import type { Role } from '../../../models';
 
 
 function Layout(): JSX.Element {
-    const [fetch, { data: roles, isLoading }] = useLazyGetRolesQuery()
+    const [fetch, { data: roles, isLoading }] = useLazyGetRootsQuery()
     const [fetchChildren, { isLoading: isChildrenLoading }] = useLazyGetChildrenByParentIdQuery()
     const [selectedData, setSelectedData] = useState<{ id: string | number; name: string, parent?: string | null } | null>(null);
     const [update, setUpdate] = useState<boolean>(false)
@@ -49,7 +49,7 @@ function Layout(): JSX.Element {
 
 
     if (isLoading) return <Skeleton />
-    if (!roles) return <Text>Add Roles Here</Text>
+    if (!roles) return <AddNewRole fetch={fetch} setSelectedData={setSelectedData} setType={setType} />
     return (
         <>
             {update ? <Modal centered
